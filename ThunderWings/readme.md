@@ -1,5 +1,9 @@
 # ThunderWings Readme
 
+For this project I decided to use an in memory database along with a simple entity framework implementation as my means 
+of persisting and accessing data. This was primarily done for ease of use, but also has the added benefit of keeping my
+whole solution within the C#/.NET ecosystem.
+
 Example data used can be found in `ThunderWings/Resources/Aircraft.json`
 
 ## *Aircraft Controller*
