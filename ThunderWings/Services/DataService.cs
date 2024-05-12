@@ -173,7 +173,7 @@ public class DataService : IDataService
 
         invoice.PurchasedAircrafts = purchasedItems;
         
-        // ToDo clear basket
+        ClearBasket();
         return invoice;
     }
 
@@ -187,6 +187,17 @@ public class DataService : IDataService
         response.TotalPages = response.BasketItems.TotalPages;
         
         return response;
+    }
+
+    private async void ClearBasket()
+    {
+        var basketItems = await _basketContext.Basket.ToListAsync();
+        foreach (var item in basketItems)
+        {
+            _basketContext.Remove(item);
+        }
+
+        await _basketContext.SaveChangesAsync();
     }
     
     private IQueryable<Aircraft> AddFilters(GetAircraftsFilteredRequest filtersRequest, IQueryable<Aircraft> query)
