@@ -1,0 +1,194 @@
+[
+	{
+		"name": "F-22 Raptor",
+		"manufacturer": "Lockheed Martin",
+		"country": "United States of America",
+		"role": "Stealth air superiority fighter",
+		"topSpeed": 1498,
+		"price": 150000000
+	},
+	{
+		"name": "F-35 Lightning II",
+		"manufacturer": "Lockheed Martin",
+		"country": "United States of America",
+		"role": "Stealth Multirole fighter",
+		"topSpeed": 1200,
+		"price": 85000000
+	},
+	{
+		"name": "Sukhoi Su-35",
+		"manufacturer": "Sukhoi",
+		"country": "Russia",
+		"role": "Multirole fighter",
+		"topSpeed": 2400,
+		"price": 85000000
+	},
+	{
+		"name": "Su-57",
+		"manufacturer": "Sukhoi",
+		"country": "Russia",
+		"role": "Air superiority fighter",
+		"topSpeed": 1520,
+		"price": 70000000
+	},
+	{
+		"name": "Eurofighter Typhoon",
+		"manufacturer": "Airbus, BAE Systems, Leonardo, and others",
+		"country": "European consortium (Germany, Spain, Italy, and the United Kingdom)",
+		"role": "Multirole fighter",
+		"topSpeed": 1550,
+		"price": 100000000
+	},
+	{
+		"name": "F-15 Eagle",
+		"manufacturer": "Boeing",
+		"country": "United States of America",
+		"role": "Air superiority fighter",
+		"topSpeed": 1650,
+		"price": 30000000
+	},
+	{
+		"name": "Rafale",
+		"manufacturer": "Dassault Aviation",
+		"country": "France",
+		"role": "Multirole fighter",
+		"topSpeed": 1912,
+		"price": 80000000
+	},
+	{
+		"name": "Dassault Mirage 2000",
+		"manufacturer": "Dassault Aviation",
+		"country": "France",
+		"role": "Multirole fighter",
+		"topSpeed": 2336,
+		"price": 1000000
+	},
+	{
+		"name": "Chengdu J-10",
+		"manufacturer": "Chengdu Aircraft Industry Group",
+		"country": "China",
+		"role": "Multirole fighter",
+		"topSpeed": 2335,
+		"price": 60000000
+	},
+	{
+		"name": "J-20",
+		"manufacturer": "Chengdu Aerospace Corporation",
+		"country": "China",
+		"role": "Air superiority fighter",
+		"topSpeed": 1305,
+		"price": 110000000
+	},
+	{
+		"name": "Gripen E",
+		"manufacturer": "Saab",
+		"country": "Sweden",
+		"role": "Multirole fighter",
+		"topSpeed": 1372,
+		"price": 85000000
+	},
+	{
+		"name": "MiG-35",
+		"manufacturer": "Mikoyan",
+		"country": "Russia",
+		"role": "Multirole fighter",
+		"topSpeed": 1491,
+		"price": 40000000
+	},
+	{
+		"name": "F/A-18 Super Hornet",
+		"manufacturer": "Boeing",
+		"country": "United States of America",
+		"role": "Multirole fighter",
+		"topSpeed": 1190,
+		"price": 70000000
+	},
+	{
+		"name": "HAL Tejas",
+		"manufacturer": "Hindustan Aeronautics Limited (HAL)",
+		"country": "India",
+		"role": "Multirole fighter",
+		"topSpeed": 1370,
+		"price": 40000000
+	},
+	{
+		"name": "Mitsubishi F-2",
+		"manufacturer": "Mitsubishi Heavy Industries",
+		"country": "Japan",
+		"role": "Multirole fighter",
+		"topSpeed": 1860,
+		"price": 100000000
+	},
+	{
+        "name": "JF-17 Thunder",
+        "manufacturer": "Chengdu Aircraft Corporation (CAC) and Pakistan Aeronautical Complex (PAC)",
+        "country": "Pakistan",
+        "role": "Multirole fighter",
+        "topSpeed": 1975,
+        "price": 25000000
+    },
+    {
+        "name": "HAL AMCA",
+        "manufacturer": "Hindustan Aeronautics Limited (HAL)",
+        "country": "India",
+        "role": "Multirole fighter",
+        "topSpeed": 2485,
+        "price": 120000000
+    },
+    {
+        "name": "T-50 PAK FA",
+        "manufacturer": "Sukhoi",
+        "country": "Russia",
+        "role": "Air superiority fighter",
+        "topSpeed": 2495,
+        "price": 120000000
+    },
+    {
+        "name": "Chengdu J-7",
+        "manufacturer": "Chengdu Aircraft Corporation",
+        "country": "China",
+        "role": "Interceptor fighter",
+        "topSpeed": 2330,
+        "price": 20000000
+    },
+    {
+        "name": "Saab 37 Viggen",
+        "manufacturer": "Saab",
+        "country": "Sweden",
+        "role": "Ground-attack aircraft",
+        "topSpeed": 2350,
+        "price": 30000000
+    },
+    {
+        "name": "Mikoyan MiG-29",
+        "manufacturer": "Mikoyan",
+        "country": "Russia",
+        "role": "Multirole fighter",
+        "topSpeed": 2445,
+        "price": 45000000
+    },
+    {
+        "name": "Chengdu J-9",
+        "manufacturer": "Chengdu Aircraft Corporation",
+        "country": "China",
+        "role": "Stealth multirole fighter",
+        "topSpeed": 2600,
+        "price": 150000000
+    },
+    {
+        "name": "Sukhoi Su-30",
+        "manufacturer": "Sukhoi",
+        "country": "Russia",
+        "role": "Multirole fighter",
+        "topSpeed": 2120,
+        "price": 90000000
+    },
+    {
+        "name": "Northrop F-20 Tigershark",
+        "manufacturer": "Northrop Corporation",
+        "country": "United States of America",
+        "role": "Lightweight fighter",
+        "topSpeed": 2290,
+        "price": 35000000
+    }
+]
