@@ -15,7 +15,7 @@ public class PaginatedList<T> : List<T>
         AddRange(items);
     }
 
-    public static async Task<PaginatedList<T>> CreateAsync(IQueryable<T> source, int pageIndex, int pageSize)
+    public static async Task<PaginatedList<T>> CreateQueryableAsync(IQueryable<T> source, int pageIndex, int pageSize)
     {
         var count = await source.CountAsync();
         var items = await source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
@@ -23,7 +23,15 @@ public class PaginatedList<T> : List<T>
         return new PaginatedList<T>(items, count, pageIndex, pageSize);
     }
     
-    public static async Task<PaginatedList<T>> Create(IOrderedEnumerable<T> source, int pageIndex, int pageSize)
+    public static async Task<PaginatedList<T>> CreateEnumerableAsync(IEnumerable<T> source, int pageIndex, int pageSize)
+    {
+        var count = source.Count();
+        var items = source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+
+        return new PaginatedList<T>(items, count, pageIndex, pageSize);
+    }
+    
+    public static async Task<PaginatedList<T>> CreateOrderedEnumerableAsync(IOrderedEnumerable<T> source, int pageIndex, int pageSize)
     {
         var count = source.Count();
         var items = source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();

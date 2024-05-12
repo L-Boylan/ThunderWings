@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ThunderWings.Models;
+using ThunderWings.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddDbContext<AircraftContext>(s => s.UseInMemoryDatabase("AircraftList"));
 builder.Services.AddDbContext<BasketContext>(s => s.UseInMemoryDatabase("Basket"));
+builder.Services.AddScoped<IDataService, DataService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
