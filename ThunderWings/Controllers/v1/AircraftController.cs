@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ThunderWings.Models;
+using ThunderWings.Services;
 
 namespace ThunderWings.Controllers.v1
 {
@@ -15,24 +11,21 @@ namespace ThunderWings.Controllers.v1
     {
         private readonly AircraftContext _aircraftContext;
         private readonly BasketContext _basketContext;
+        private readonly IDataService _dataService;
 
-        public AircraftController(AircraftContext aircraftContext, BasketContext basketContext)
+        public AircraftController(AircraftContext aircraftContext, BasketContext basketContext, IDataService dataService)
         {
             _aircraftContext = aircraftContext;
             _basketContext = basketContext;
+            _dataService = dataService;
         }
 
         [HttpPost]
-        [Route("addall")]
-        public async Task<IActionResult> PostAllAircraft(List<Aircraft> aircrafts)
+        [Route("add")]
+        public async Task<IActionResult> AddMultipleAircraft(List<Aircraft> aircrafts)
         {
-            foreach (var aircraft in aircrafts)
-            {
-                _aircraftContext.Aircrafts.Add(aircraft);
-            }
-
-            var s = await _aircraftContext.SaveChangesAsync();
-            return Ok($"Added {s} aircrafts");
+            var count = _dataService.AddMultipleAircraftInternal(aircrafts);
+            return Ok($"Added {count} aircraft(s)");
         }
 
         [HttpPost]
@@ -101,50 +94,16 @@ namespace ThunderWings.Controllers.v1
 
         [HttpPost]
         [Route("basket/add")]
-        public async Task<ActionResult<List<Aircraft>>> AddToBasket(List<int> ids)
+        public async Task<ActionResult<AddToBasketResponse>> AddToBasket(List<int> ids)
         {
-            var basketItems = new List<Aircraft>();
-            foreach (var id in ids)
-            {
-                var aircraft = await _aircraftContext.Aircrafts.FirstOrDefaultAsync(a => a.Id == id);
-                
-                if (aircraft == null) return BadRequest($"Could not find match for the Id: {id}");
-                
-                basketItems.Add(aircraft);
-                
-                _basketContext.Basket.Add(new Basket{Id = id});
-            }
-            await _basketContext.SaveChangesAsync();
-
-            return basketItems;
+            return await _dataService.AddToBasketInternal(ids);
         }
 
         [HttpPost]
         [Route("basket/checkout")]
         public async Task<ActionResult<Invoice>> CheckoutBasket()
         {
-            var basket = await _basketContext.Basket.ToListAsync().ConfigureAwait(false);
-            var invoice = new Invoice();
-            var purchasedItems = new List<Aircraft>();
-            
-            if (basket.Count <= 0)
-            {
-                return BadRequest("No items in basket");
-            }
-            
-
-            foreach (var item in basket)
-            {
-                var pa = _aircraftContext.Aircrafts.FirstOrDefault(a => a.Id == item.Id);
-                if (pa != null)
-                {
-                    invoice.TotalPrice += pa.Price;
-                    purchasedItems.Add(pa);
-                }
-            }
-
-            invoice.PurchasedAircrafts = purchasedItems;
-            return invoice;
+            return await _dataService.CheckoutBasketInternal();
         }
         
         /// <summary>
