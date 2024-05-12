@@ -22,17 +22,18 @@ public class BasketController : Controller
         return await _dataService.AddToBasketInternal(ids);
     }
     
-    /// <summary>
-    /// The dictionary key refers to the aircraftId of you wish to remove,
-    /// while the value is used to determine whether you want to delete one instance or all instances (true for all, false for one)
-    /// </summary>
-    /// <param name="request"></param>
-    /// <returns></returns>
     [HttpPost]
     [Route("remove")]
     public async Task<ActionResult<RemoveBasketItemResponse>> RemoveBasketItem(RemoveBasketItemRequest request)
     {
         return await _dataService.RemoveBasketItemInternal(request);
+    }
+
+    [HttpGet]
+    [Route("view")]
+    public async Task<ActionResult<PaginatedBasketResponse>> ViewBasket(int page, int pageSize)
+    {
+        return await _dataService.ViewBasketInternal(page, pageSize);
     }
     
     [HttpPost]

@@ -28,7 +28,6 @@ public class DataService : IDataService
     public async Task<PaginatedAircraftResponse> GetAircraftsFilteredInternal(GetAircraftsFilteredRequest filtersRequest,
         int page, int pageSize)
     {
-        //ToDo I'm certain I can make this far better
         var response = new PaginatedAircraftResponse();
         
         var query = _aircraftContext.Aircrafts.AsQueryable().AsNoTracking();
@@ -69,6 +68,7 @@ public class DataService : IDataService
             AddedAircraft = new List<Aircraft>(),
             FailedToAdd = ""
         };
+        
         var failedToAdd = new List<int>();
         
         foreach (var id in ids)
@@ -99,7 +99,10 @@ public class DataService : IDataService
 
     public async Task<RemoveBasketItemResponse> RemoveBasketItemInternal(RemoveBasketItemRequest request)
     {
-        var response = new RemoveBasketItemResponse();
+        var response = new RemoveBasketItemResponse
+        {
+            RemovedAircraftIds = new List<int>()
+        };
         var failedToRemove = "";
 
         foreach (var item in request.ItemsToRemove)
@@ -116,6 +119,7 @@ public class DataService : IDataService
                 {
                     foreach (var itemToDelete in itemsToDelete)
                     {
+                        response.RemovedAircraftIds.Add(itemToDelete.AircraftId);
                         _basketContext.Remove(itemToDelete);
                     }
                 }
@@ -129,6 +133,7 @@ public class DataService : IDataService
                 }
                 else
                 {
+                    response.RemovedAircraftIds.Add(itemToRemove.AircraftId);
                     _basketContext.Remove(itemToRemove);
                 }
             }
@@ -170,6 +175,18 @@ public class DataService : IDataService
         
         // ToDo clear basket
         return invoice;
+    }
+
+    public async Task<PaginatedBasketResponse> ViewBasketInternal(int page, int pageSize)
+    {
+        var response = new PaginatedBasketResponse();
+        var basketItems = await _basketContext.Basket.ToListAsync();
+
+        response.BasketItems = await PaginatedList<Basket>.CreateEnumerableAsync(basketItems, page, pageSize);
+        response.CurrentPage = response.BasketItems.PageIndex;
+        response.TotalPages = response.BasketItems.TotalPages;
+        
+        return response;
     }
     
     private IQueryable<Aircraft> AddFilters(GetAircraftsFilteredRequest filtersRequest, IQueryable<Aircraft> query)

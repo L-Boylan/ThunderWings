@@ -10,5 +10,5 @@ public interface IDataService
     Task<AddToBasketResponse> AddToBasketInternal(List<int> ids);
     Task<RemoveBasketItemResponse> RemoveBasketItemInternal(RemoveBasketItemRequest request);
     Task<InvoiceResponse> CheckoutBasketInternal();
-    // Consider whether to bother with "savebasket"
+    Task<PaginatedBasketResponse> ViewBasketInternal(int page, int pageSize);
 }
