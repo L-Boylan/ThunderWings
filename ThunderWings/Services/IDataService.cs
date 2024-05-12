@@ -6,9 +6,9 @@ namespace ThunderWings.Services;
 public interface IDataService
 {
     Task<int> AddMultipleAircraftInternal(List<Aircraft> aircraft);
-    Task<PaginatedList<Aircraft>> GetAircraftsFilteredInternal();
+    Task<PaginatedAircraftResponse> GetAircraftsFilteredInternal(GetAircraftsFilteredRequest filtersRequest, int page, int pageSize);
     Task<AddToBasketResponse> AddToBasketInternal(List<int> ids);
-    Task RemoveFromBasketInternal();
-    Task<Invoice> CheckoutBasketInternal();
+    Task<RemoveBasketItemResponse> RemoveBasketItemInternal(RemoveBasketItemRequest request);
+    Task<InvoiceResponse> CheckoutBasketInternal();
     // Consider whether to bother with "savebasket"
 }
