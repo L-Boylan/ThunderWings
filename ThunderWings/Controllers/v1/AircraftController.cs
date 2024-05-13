@@ -19,7 +19,7 @@ namespace ThunderWings.Controllers.v1
         [Route("add")]
         public async Task<IActionResult> AddMultipleAircraft(List<Aircraft> aircrafts)
         {
-            var count = _dataService.AddMultipleAircraftInternal(aircrafts);
+            var count = await _dataService.AddMultipleAircraftInternal(aircrafts);
             return Ok($"Added {count} aircraft(s)");
         }
 

@@ -4,7 +4,7 @@ For this project I decided to use an in memory database along with a simple enti
 of persisting and accessing data. This was primarily done for ease of use, but also has the added benefit of keeping my
 whole solution within the C#/.NET ecosystem.
 
-Example data used can be found in `ThunderWings/Resources/Aircraft.json`
+Example data used can be found in `ThunderWings/Resources/Aircraft.json`.
 
 ## *Aircraft Controller*
 
@@ -33,11 +33,11 @@ Adds a list of one or more aircrafts to the in memory database.
 ### Method: POST
 *api/v1/aircraft/aircraftfiltered?page={REQUESTED PAGE}&pageSize={MAX VALUES PER PAGE}*
 
-Gets a list of aircraft. Page and PageSize are integer values used to denote the page index and maximum values per page respectively
+Gets a list of aircraft. Page and PageSize are integer values used to denote the page index and maximum values per page respectively.
 
 In the body, SortBy denotes the property to sort the results by. Filter options is a dictionary, 
 with the key being the property you would like to filter by and the value being what the property must contain
-e.g. `"country": "america"`
+e.g. `"country": "america"`.
 ### Input Schema
 ```json
 {
@@ -83,12 +83,14 @@ Aircraft Controller find the aircraft you want and use those ids.
   "failedToAdd": "Failed to add Id(s): 30, "
 }
 ```
+NOTE: If you have a mixture of valid Ids and invalid Ids, all valid Ids should be added to the basket, 
+while invalid Ids will be noted on the failed to add property.
 
 ---
 ### Method: POST
 *api/v1/basket/remove*
 
-Use to remove items from basket
+Use to remove items from basket.
 
 The body is a dictionary where the key is the Id of the aircraft you wish to remove from the basket
 and the value is a bool to signify whether you wish to remove all instances of an aircraft from the basket (`true`)
@@ -98,11 +100,12 @@ or just one instance (`false`).
 ```json
 {
   "itemsToRemove": {
-    "1": true,      // removes all instances of 1 from basket
-    "2": false      // removes only one instance of 2 from basket
+    "19": true,      
+    "2": false      
   }
 }
 ```
+
 ### Example Responses
 Success:
 ```json
@@ -111,16 +114,11 @@ Success:
     19,
     19
   ],
-  "failedToRemove": null
+  "failedToRemove": "Failed to remove Ids: 2, \nBasket did not contain elements with these ids"
 }
 ```
-Failure:
-```json
-{
-  "removedAircraftIds": [],
-  "failedToRemove": "Failed to remove Ids: 19, \nBasket did not contain elements with these ids"
-}
-```
+NOTE: Much like the add to basket endpoint, items that cannot be removed from the basket are noted by the failed to remove 
+property.
 
 ---
 ### Method: GET
@@ -130,41 +128,17 @@ Returns all elements in the current basket. Results are paginated in the same wa
 the Aircraft Controller.
 
 ### Example Response
-Request: `api/v1/Basket/view?page=1&pageSize=10`
+Request: `api/v1/Basket/view?page=1&pageSize=5`
 ```json
 {
   "basketItems": [
     {
-      "id": 2,
-      "aircraftId": 1
+      "id": 4,
+      "aircraftId": 19
     },
     {
       "id": 3,
-      "aircraftId": 2
-    },
-    {
-      "id": 8,
-      "aircraftId": 18
-    },
-    {
-      "id": 7,
-      "aircraftId": 3
-    },
-    {
-      "id": 10,
-      "aircraftId": 14
-    },
-    {
-      "id": 11,
-      "aircraftId": 5
-    },
-    {
-      "id": 12,
-      "aircraftId": 5
-    },
-    {
-      "id": 13,
-      "aircraftId": 5
+      "aircraftId": 19
     }
   ],
   "currentPage": 1,
