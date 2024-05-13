@@ -59,8 +59,6 @@ public class DataService : IDataService
         return response;
     }
 
-    
-
     public async Task<AddToBasketResponse> AddToBasketInternal(List<int> ids)
     {
         var addToBasketResponse = new AddToBasketResponse
